@@ -5,7 +5,7 @@ pkg install curl -y
 pkg install jq -y
 pkg install nano -y
 
-git clone https://github.com/tu-usuario/fsociety-tracker.git
+git clone https://github.com/vpm666/iptracker.git
 cd fsociety-tracker
 
 chmod +x fsociety_tracker.sh
