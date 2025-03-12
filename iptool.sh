@@ -1,0 +1,221 @@
+#!/bin/bash
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+ORANGE='\033[0;33m'
+WHITE='\033[0;97m'
+BOLDWHITE='\033[1;97m'
+NC='\033[0m'
+BOLDRED='\033[1;31m'
+BOLDCYAN='\033[1;36m'
+
+show_menu() {
+    clear
+    echo -e "${WHITE}
+   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⠶⠶⠶⠶⢦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⠛⠁⠀⠀⠀⠀⠀⠀⠈⠙⢷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠸⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⣠⡴⠞⠛⠉⠉⣩⣍⠉⠉⠛⠳⢦⣄⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡀⠀⣴⡿⣧⣀⠀⢀⣠⡴⠋⠙⢷⣄⡀⠀⣀⣼⢿⣦⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣧⡾⠋⣷⠈⠉⠉⠉⠉⠀⠀⠀⠀⠉⠉⠋⠉⠁⣼⠙⢷⣼⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣇⠀⢻⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡟⠀⣸⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣹⣆⠀⢻⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡟⠀⣰⣏⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⠞⠋⠁⠙⢷⣄⠙⢷⣀⠀⠀⠀⠀⠀⠀⢀⡴⠋⢀⡾⠋⠈⠙⠻⢦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⠋⠀⠀⠀⠀⠀⠀⠹⢦⡀⠙⠳⠶⢤⡤⠶⠞⠋⢀⡴⠟⠀⠀⠀⠀⠀⠀⠙⠻⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣼⠋⠀⠀⢀⣤⣤⣤⣤⣤⣤⣤⣿⣦⣤⣤⣤⣤⣤⣤⣴⣿⣤⣤⣤⣤⣤⣤⣤⡀⠀⠀⠙⣧⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣸⠏⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⢠⣴⠞⠛⠛⠻⢦⡄⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠸⣇⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢠⡟⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⣿⣿⢶⣄⣠⡶⣦⣿⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⢻⡄⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣾⠁⠀⠀⠀⠀⠘⣇⠀⠀⠀⠀⠀⠀⠀⢻⣿⠶⠟⠻⠶⢿⡿⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠈⣿⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢰⡏⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⢾⣄⣹⣦⣀⣀⣴⢟⣠⡶⠀⠀⠀⠀⠀⠀⣼⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠈⠛⠿⣭⣭⡿⠛⠁⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠘⣧⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⢿⡀⠀⠀⠀⠀⠀⠀⣀⡴⠞⠋⠙⠳⢦⣀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⢰⡏⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠈⢿⣄⣀⠀⠀⢀⣤⣼⣧⣤⣤⣤⣤⣤⣿⣭⣤⣤⣤⣤⣤⣤⣭⣿⣤⣤⣤⣤⣤⣼⣿⣤⣄⠀⠀⣀⣠⡾⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠈⠉⠛⠛⠻⢧⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠼⠟⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀
+    "
+    echo -e "${ORANGE}Created by VPM ( ${RED}RH4X${ORANGE} )${NC}"
+    echo -e "\n"
+    echo -e "    ${WHITE}[01] My IP"
+    echo -e "    ${WHITE}[02] Track IP"
+    echo -e "    ${WHITE}[00] Exit"
+    echo -e "\n"
+    echo -e "    ${WHITE}[~] Select an option: ${NC}"
+    read -p "    >> " option
+    case $option in
+        1|01) my_ip ;;
+        2|02) input_ip ;;
+        0|00) exit 0 ;;
+        *) invalid_option ;;
+    esac
+}
+
+my_ip() {
+    clear
+    echo -e "${WHITE}Your IP Address: $(curl -s ifconfig.me)${NC}"
+    sleep 2
+    show_menu
+}
+
+input_ip() {
+    clear
+    echo -e "${WHITE}⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣤⣤⣶⣶⣶⣤⣤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣠⣶⣿⣿⡿⣿⣿⣿⡿⠋⠉⠀⠀⠉⠙⢿⣿⣿⡿⣿⣿⣷⣦⡀⠀⠀⠀
+⠀⢀⣼⣿⣿⠟⠁⢠⣿⣿⠏⠀⠀⢠⣤⣤⡀⠀⠀⢻⣿⣿⡀⠙⢿⣿⣿⣦⠀⠀
+⣰⣿⣿⡟⠁⠀⠀⢸⣿⣿⠀⠀⠀⢿⣿⣿⡟⠀⠀⠈⣿⣿⡇⠀⠀⠙⣿⣿⣷⡄
+⠈⠻⣿⣿⣦⣄⠀⠸⣿⣿⣆⠀⠀⠀⠉⠉⠀⠀⠀⣸⣿⣿⠃⢀⣤⣾⣿⣿⠟⠁
+⠀⠀⠈⠻⣿⣿⣿⣶⣿⣿⣿⣦⣄⠀⠀⠀⢀⣠⣾⣿⣿⣿⣾⣿⣿⡿⠋⠁⠀⠀
+⠀⠀⠀⠀⠀⠙⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠛⠛⠿⠿⠿⠿⠿⠿⠛⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    "
+    echo -e "${ORANGE}Created by VPM ( ${RED}RH4X${ORANGE} )${NC}"
+    echo -e "\n"
+    echo -e "    ${WHITE}[~] Enter an IP address: ${NC}"
+    read -p "    >> " ip_address
+    echo -e "\n${ORANGE}IP entered: $ip_address${NC}"
+
+    ip_info=$(curl -s "http://ip-api.com/json/$ip_address")
+    city=$(echo $ip_info | jq -r '.city')
+    region=$(echo $ip_info | jq -r '.regionName')
+    country=$(echo $ip_info | jq -r '.country')
+    latitude=$(echo $ip_info | jq -r '.lat')
+    longitude=$(echo $ip_info | jq -r '.lon')
+    timezone=$(echo $ip_info | jq -r '.timezone')
+    postal_code=$(echo $ip_info | jq -r '.zip')
+    isp=$(echo $ip_info | jq -r '.isp')
+    asn=$(echo $ip_info | jq -r '.as')
+    country_code=$(echo $ip_info | jq -r '.countryCode')
+    currency=$(echo $ip_info | jq -r '.currency')
+    languages=$(echo $ip_info | jq -r '.languages')
+    calling_code=$(echo $ip_info | jq -r '.callingCode')
+    google_maps="https://maps.google.com/?q=$latitude,$longitude"
+
+    echo -e "\n${CYAN}IP Address   : ${WHITE}$ip_address"
+    echo -e "${CYAN}City         : ${WHITE}$city"
+    echo -e "${CYAN}Region       : ${WHITE}$region"
+    echo -e "${CYAN}Country      : ${WHITE}$country"
+    echo -e "${CYAN}Latitude     : ${WHITE}$latitude"
+    echo -e "${CYAN}Longitude    : ${WHITE}$longitude"
+    echo -e "${CYAN}Time Zone    : ${WHITE}$timezone"
+    echo -e "${CYAN}Postal Code  : ${WHITE}$postal_code"
+    echo -e "${CYAN}ISP          : ${WHITE}$isp"
+    echo -e "${CYAN}ASN          : ${WHITE}$asn"
+    echo -e "${CYAN}Country Code : ${WHITE}$country_code"
+    echo -e "${CYAN}Currency     : ${WHITE}$currency"
+    echo -e "${CYAN}Languages    : ${WHITE}$languages"
+    echo -e "${CYAN}Calling Code : ${WHITE}$calling_code"
+    echo -e "${CYAN}Google Maps  : ${WHITE}$google_maps"
+    
+    echo -e "\n${WHITE}[01] Track another IP"
+    echo -e "[02] Copy"
+    echo -e "[03] Structured Text"
+    echo -e "[00] Exit"
+    echo -e "\n${WHITE}[~] Select an option: ${NC}"
+    read -p "    >> " choice
+    case $choice in
+        1|01) input_ip ;;
+        2|02) copy_to_clipboard ;;
+        3|03) structured_text ;;
+        0|00) exit 0 ;;
+        *) invalid_option ;;
+    esac
+}
+
+copy_to_clipboard() {
+    echo -e "${CYAN}Copied to clipboard${NC}"
+    sleep 2
+    show_menu
+}
+
+structured_text() {
+    clear
+    echo -e "${BOLDCYAN}What would you like to add?${NC}"
+    echo -e "[${RED}01${CYAN}] Add Phone Number"
+    echo -e "[${RED}02${CYAN}] Add Name"
+    echo -e "[${RED}03${CYAN}] Generate Text"
+    echo -e "[${RED}00${CYAN}] Exit"
+    echo -e "\n${CYAN}[~] Select an option: ${NC}"
+    read -p "    >> " option
+    case $option in
+        1|01) add_phone_number ;;
+        2|02) add_name ;;
+        3|03) generate_text ;;
+        0|00) exit 0 ;;
+        *) invalid_option ;;
+    esac
+}
+
+add_phone_number() {
+    clear
+    echo -e "${WHITE}Enter the phone number:${NC}"
+    read -p "> " phone
+    echo -e "\n${CYAN}Phone number: *$phone*"
+    sleep 2
+    structured_text
+}
+
+add_name() {
+    clear
+    echo -e "${WHITE}Enter the name:${NC}"
+    read -p "> " name
+    echo -e "\n${CYAN}Name: *$name*"
+    sleep 2
+    structured_text
+}
+
+generate_text() {
+    clear
+    current_date=$(date +"%Y-%m-%d")
+    current_time=$(date +"%H:%M:%S")
+
+    echo -e "${WHITE}Generating the structured text...${NC}"
+    echo -e "\n${CYAN}🔍 *Resumen del Rastreo de IP* - $current_date a las $current_time${NC}"
+    echo -e "\n📍 *IP Address*: $ip_address"
+    echo -e "🌆 *Ciudad*: $city"
+    echo -e "🏙️ *Región*: $region"
+    echo -e "🌍 *País*: $country"
+    echo -e "📍 *Latitud*: $latitude"
+    echo -e "🗺️ *Longitud*: $longitude"
+    echo -e "🕒 *Zona Horaria*: $timezone"
+    echo -e "📬 *Código Postal*: $postal_code"
+    echo -e "📶 *ISP*: $isp"
+    echo -e "🔢 *ASN*: $asn"
+    echo -e "🌐 *Código País*: $country_code"
+    echo -e "💶 *Moneda*: $currency"
+    echo -e "🗣️ *Idiomas*: $languages"
+    echo -e "📞 *Código de Llamada*: $calling_code"
+    echo -e "🌍 *Google Maps*: $google_maps"
+    
+    if [ ! -z "$name" ]; then
+        echo -e "\n👤 *Nombre*: *$name*"
+    fi
+    if [ ! -z "$phone" ]; then
+        echo -e "📱 *Número de Teléfono*: *$phone*"
+    fi
+
+    echo -e "\n${CYAN}📋 *Resumen*:${NC}"
+    echo -e "🌐 La dirección IP *$ip_address* está ubicada en *$city*, *$region*, *$country*."
+    echo -e "📍 Las coordenadas geográficas son *Latitud: $latitude* y *Longitud: $longitude*."
+    echo -e "🕒 La zona horaria local es *$timezone*, y el código postal es *$postal_code*."
+    echo -e "📶 El proveedor de servicios de Internet (ISP) es *$isp*, y el Número de Sistema Autónomo (ASN) es *$asn*."
+    echo -e "💶 El país utiliza la moneda *$currency* y los idiomas principales son *$languages*."
+    echo -e "🗺️ Para más detalles, puedes ver la ubicación en Google Maps: $google_maps."
+
+    echo -e "\n✅ *Rastreo completado!*"
+    echo -e "\n[Press Enter to go back...]"
+    read
+    show_menu
+}
+
+invalid_option() {
+    echo -e "${RED}Invalid option! Please choose a valid one.${NC}"
+    sleep 2
+    show_menu
+}
+
+show_menu
