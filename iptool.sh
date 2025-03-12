@@ -10,8 +10,10 @@ NC='\033[0m'
 BOLDRED='\033[1;31m'
 BOLDCYAN='\033[1;36m'
 
+# Crear la carpeta ip_track si no existe
 mkdir -p ip_track
 
+# Contador para el número de archivos
 counter=1
 while [[ -f "ip_track/ip_track_$counter.txt" ]]; do
     counter=$((counter + 1))
