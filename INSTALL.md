@@ -12,6 +12,6 @@ pkg install nano -y
 
 git clone https://github.com/vpm666/iptracker.git
 
-cd fsociety-tracker
+cd iptracker
 
-chmod +x fsociety_tracker.sh
+chmod +x iptool.sh
