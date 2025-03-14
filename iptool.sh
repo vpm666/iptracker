@@ -10,10 +10,8 @@ NC='\033[0m'
 BOLDRED='\033[1;31m'
 BOLDCYAN='\033[1;36m'
 
-# Crear la carpeta ip_track si no existe
 mkdir -p ip_track
 
-# Contador para el número de archivos
 counter=1
 while [[ -f "ip_track/ip_track_$counter.txt" ]]; do
     counter=$((counter + 1))
@@ -181,7 +179,6 @@ generate_text() {
     current_date=$(date +"%Y-%m-%d")
     current_time=$(date +"%H:%M:%S")
 
-    # Mostrar el texto generado en la terminal
     echo -e "${CYAN}🔍 *Resumen del Rastreo de IP* - $current_date a las $current_time${NC}"
     echo -e "\n📍 *IP Address*: $ip_address"
     echo -e "🌆 *Ciudad*: $city"
@@ -205,7 +202,6 @@ generate_text() {
         echo -e "📱 *Número de Teléfono*: *$phone*"
     fi
 
-    # Guardar la información en un archivo .txt
     output_file="ip_track/ip_track_$counter.txt"
     echo -e "-----------------------------" > "$output_file"
     echo -e "IP Track $counter" >> "$output_file"
